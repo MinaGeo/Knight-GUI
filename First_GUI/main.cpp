@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <iostream>
-#include "ChessB.h"
 //#include "openscreen.h"
 #include <QApplication>
 #include <QLocale>

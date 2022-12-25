@@ -54,6 +54,7 @@ public:
     QLabel *no7;
     QLabel *no8;
     QPushButton *btn_Calculate;
+    QPushButton *btn_knight;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -91,7 +92,7 @@ public:
         PawnB2->setPixmap(QPixmap(QString::fromUtf8(":/resources/img/pawnBlacks.png")));
         BishopW = new QLabel(centralwidget);
         BishopW->setObjectName("BishopW");
-        BishopW->setGeometry(QRect(80, 720, 75, 75));
+        BishopW->setGeometry(QRect(160, 800, 75, 75));
         QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -105,7 +106,7 @@ public:
         PawnB1->setPixmap(QPixmap(QString::fromUtf8(":/resources/img/pawnBlacks.png")));
         btn_GameStart = new QPushButton(centralwidget);
         btn_GameStart->setObjectName("btn_GameStart");
-        btn_GameStart->setGeometry(QRect(870, 340, 191, 41));
+        btn_GameStart->setGeometry(QRect(1080, 340, 191, 51));
         QFont font1;
         font1.setPointSize(18);
         btn_GameStart->setFont(font1);
@@ -137,17 +138,17 @@ public:
         te_Dest->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(840, 390, 141, 20));
+        label_3->setGeometry(QRect(840, 420, 141, 20));
         label_3->setFont(font2);
         te_Pwn = new QTextEdit(centralwidget);
         te_Pwn->setObjectName("te_Pwn");
         te_Pwn->setEnabled(true);
-        te_Pwn->setGeometry(QRect(1000, 390, 111, 21));
+        te_Pwn->setGeometry(QRect(1000, 420, 111, 21));
         te_Pwn->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         te_Pwn->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         btn_addPwn = new QPushButton(centralwidget);
         btn_addPwn->setObjectName("btn_addPwn");
-        btn_addPwn->setGeometry(QRect(1160, 370, 171, 61));
+        btn_addPwn->setGeometry(QRect(1150, 410, 171, 31));
         btn_addPwn->setFont(font2);
         PawnB3 = new QLabel(centralwidget);
         PawnB3->setObjectName("PawnB3");
@@ -208,6 +209,10 @@ public:
         btn_Calculate = new QPushButton(centralwidget);
         btn_Calculate->setObjectName("btn_Calculate");
         btn_Calculate->setGeometry(QRect(890, 140, 201, 81));
+        btn_knight = new QPushButton(centralwidget);
+        btn_knight->setObjectName("btn_knight");
+        btn_knight->setGeometry(QRect(850, 340, 201, 51));
+        btn_knight->setFont(font1);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -230,7 +235,7 @@ public:
         PawnB2->setText(QString());
         BishopW->setText(QString());
         PawnB1->setText(QString());
-        btn_GameStart->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
+        btn_GameStart->setText(QCoreApplication::translate("MainWindow", "Bishop", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Starting Position", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Target Position", nullptr));
         lbl_result->setText(QString());
@@ -251,6 +256,7 @@ public:
         no7->setText(QString());
         no8->setText(QString());
         btn_Calculate->setText(QCoreApplication::translate("MainWindow", "Done", nullptr));
+        btn_knight->setText(QCoreApplication::translate("MainWindow", "Knight", nullptr));
     } // retranslateUi
 
 };

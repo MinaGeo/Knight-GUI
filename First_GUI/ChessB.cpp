@@ -127,7 +127,7 @@ void ChessB::printNode(string str) {
 void ChessB::choosePathK() {
     Node* tmp=src;
     Node* min=NULL,*crt=NULL;
-    for(int j=1;((j<=6)&&(tmp!=this->dest));j++){
+    for(int j=1;((j<=8)&&(tmp!=this->dest));j++){
         for (int i = 0; ((i < 8) && (tmp->nextK[i] != NULL)); i++) {
             crt=tmp->nextK[i];
             if((crt->safe==false))continue;
@@ -141,13 +141,13 @@ void ChessB::choosePathK() {
     }
 }
 void ChessB::addPathK(Node* crt, int steps) {
-    if(steps>6)
+    if(steps>8)
         return;
     else if((crt->distanceToTargetK < steps) && (crt->distanceToTargetK != -1))
         return;
     else{
         crt->distanceToTargetK=steps;
-        for(int i=0;i<8&&crt->nextK[i]!=NULL;i++){
+        for(int i=0;((i<8)&&(crt->nextK[i]!=NULL));i++){
             addPathK(crt->nextK[i], steps + 1);
         }
     }

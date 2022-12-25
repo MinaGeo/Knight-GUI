@@ -98,8 +98,8 @@
    <widget class="QLabel" name="BishopW">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>720</y>
+      <x>160</x>
+      <y>800</y>
       <width>75</width>
       <height>75</height>
      </rect>
@@ -142,10 +142,10 @@
    <widget class="QPushButton" name="btn_GameStart">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>1080</x>
       <y>340</y>
       <width>191</width>
-      <height>41</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -154,7 +154,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Start</string>
+     <string>Bishop</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -253,7 +253,7 @@
     <property name="geometry">
      <rect>
       <x>840</x>
-      <y>390</y>
+      <y>420</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -274,7 +274,7 @@
     <property name="geometry">
      <rect>
       <x>1000</x>
-      <y>390</y>
+      <y>420</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -289,10 +289,10 @@
    <widget class="QPushButton" name="btn_addPwn">
     <property name="geometry">
      <rect>
-      <x>1160</x>
-      <y>370</y>
+      <x>1150</x>
+      <y>410</y>
       <width>171</width>
-      <height>61</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -539,6 +539,24 @@
     </property>
     <property name="text">
      <string>Done</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_knight">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>340</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Knight</string>
     </property>
    </widget>
   </widget>

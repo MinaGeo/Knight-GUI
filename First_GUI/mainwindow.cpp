@@ -90,94 +90,55 @@ void MainWindow::setInitial8(string initial)
     ui->no8->move(ui->no8->x()+85*x1,ui->no8->y()-85*y1);
 }
 
-/*
-void MainWindow::on_pushButton_3_clicked()
-{
-       // takeParameters("b2", "a1",'b');
-
-}
-
-void MainWindow::on_pushButton_2_clicked()
-{
-
-    //takeParameters("d3", "h1",'h');
-}
-
-//ChessB MainWindow::takeKnightsPlaces()
-//{
-////    QString initial = ui->initText->text();
-////    QString target = ui->targetText->text();
-////    ChessB x(initial.toStdString(), target.toStdString());
-////   return x;
-
-
-//}
-*/
 void MainWindow::setGame(string src,string dest)
 {
     ChessB x(src,dest);
     game = x;
+    game.src=&game.cb[x.src->pos[1]-'1'][x.src->pos[0]-'a'];
+    game.dest=&game.cb[x.dest->pos[1]-'1'][x.dest->pos[0]-'a'];
     game.addNexts();
 
 
 }
 
-void MainWindow::on_btn_GameStart_clicked()
+void MainWindow::on_btn_GameStart_clicked() //bishop start
+{    ui->lbl_result->setText(QString::fromStdString(""));
+     string src=ui->te_Src->toPlainText().toLocal8Bit().constData();
+     string dest=ui->te_Dest->toPlainText().toLocal8Bit().constData();
+     game.putBishop(src);
+     if(game.isValid(src) && game.isValid(dest)){
+
+         setGame(src,dest);
+         int x1 = src[0] - 97;
+         int y1  = src[1]-48;
+
+         ui->BishopW->move(ui->BishopW->x()+85*x1,ui->BishopW->y()-85*y1);
+         ui->btn_knight->setEnabled(false);
+     }
+     else
+     {
+         ui->lbl_result->setText(QString::fromStdString("Invalid position"));
+     }
+}
+void MainWindow::on_btn_knight_clicked()
 {
-     ui->lbl_result->setText(QString::fromStdString(""));
-    string src=ui->te_Src->toPlainText().toLocal8Bit().constData();
-    string dest=ui->te_Dest->toPlainText().toLocal8Bit().constData();
-    if(game.isValid(src) && game.isValid(dest)){
+    ui->lbl_result->setText(QString::fromStdString(""));
+        string src=ui->te_Src->toPlainText().toLocal8Bit().constData();
+        string dest=ui->te_Dest->toPlainText().toLocal8Bit().constData();
+        if(game.isValid(src) && game.isValid(dest)){
 
-        setGame(src,dest);
-        int x1 = src[0] - 97;
-        int y1  = src[1]-48;
+            setGame(src,dest);
+            int x1 = src[0] - 97;
+            int y1  = src[1]-48;
 
-        ui->KnightW->move(ui->KnightW->x()+85*x1,ui->KnightW->y()-85*y1);
-        ui->btn_GameStart->setEnabled(false);
-    }
-    else
-    {
-        ui->lbl_result->setText(QString::fromStdString("Invalid position"));
-    }
- setInitial1("h1");
-  setInitial2("h2");
-   setInitial3("h3");
-    setInitial4("g8");
-     setInitial5("f4");
-/*
+            ui->KnightW->move(ui->KnightW->x()+85*x1,ui->KnightW->y()-85*y1);
+            ui->btn_GameStart->setEnabled(false);
 
-    if(!game.pathK.empty()){
-        setInitial1(game.pathK.front()->pos);
-        game.pathK.pop();}
-    if(!game->pathK.empty()){
-    setInitial2(game->pathK.front()->pos);
-    game->pathK.pop();}
-
-    if(!game->pathK.empty()){
-    setInitial3(game->pathK.front()->pos);
-    game->pathK.pop();}
-
-    if(!game->pathK.empty()){
-    setInitial4(game->pathK.front()->pos);
-    game->pathK.pop();}
-
-    if(!game->pathK.empty()){
-    setInitial5(game->pathK.front()->pos);
-    game->pathK.pop();}
-    if(!game->pathK.empty()){
-    setInitial6(game->pathK.front()->pos);
-    game->pathK.pop();}
-    if(!game->pathK.empty()){
-    setInitial7(game->pathK.front()->pos);
-    game->pathK.pop();}
-    if(!game->pathK.empty()){
-    setInitial8(game->pathK.front()->pos);
-    game->pathK.pop();}
-
-*/
-
-//   ui->KnightW->setGeometry(QRect(160+(game->src->pos[0]-'a')*87,710,87,87));
+        }
+        else
+        {
+            ui->lbl_result->setText(QString::fromStdString("Invalid position"));
+        }
 }
 
 
@@ -238,31 +199,44 @@ void MainWindow::setPawn(string pos)
         }
 
 
-
-
-
-
-//    switch (x){
-//    case 1:{
-//        ui->PawnB1->move(ui->PawnB1->x()+85*x1,ui->PawnB1->y()-85*y1);
-//        x++;
-//        break;
-//    }
-//    case 2:{
-//
-//        x++;
-//        break;
-//    }
-//        default:{
-//        ui->lbl_result->setText(QString::fromStdString("Maximum Number of Pawns is 8"));
-//    }
-//    }
 }
 
 
 void MainWindow::on_btn_Calculate_clicked()
 {
-    game.addPathK(game.dest,0);
+    if(game.dest->safe==false){
+        ui->lbl_result->setText(QString::fromStdString("The destination is not safe"));
+    }else{
+    game.addPathK((game.dest),0);
     game.choosePathK();
+    if(!game.pathK.empty()){
+        setInitial1(game.pathK.front()->pos);
+        game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial2(game.pathK.front()->pos);
+    game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial3(game.pathK.front()->pos);
+    game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial4(game.pathK.front()->pos);
+    game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial5(game.pathK.front()->pos);
+    game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial6(game.pathK.front()->pos);
+    game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial7(game.pathK.front()->pos);
+    game.pathK.pop();}
+    if(!game.pathK.empty()){
+    setInitial8(game.pathK.front()->pos);
+    game.pathK.pop();
+    }
+    ui->btn_Calculate->setEnabled(false);
+    ui->btn_addPwn->setEnabled(false);
+    }
 }
+
 
